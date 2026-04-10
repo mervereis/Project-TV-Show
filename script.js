@@ -11,16 +11,16 @@ function setup() {
         "Error loading episodes. Please try again later.";
     });
 }
-
+function formatEpisodeCode(season, episode) {
+  return `S${String(season).padStart(2, "0")}E${String(episode).padStart(2, "0")}`;
+}
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.innerHTML = episodeList
     .map((episode) => {
-      const season = String(episode.season).padStart(2, "0");
-      const episodeNumber = String(episode.number).padStart(2, "0");
       return `
       <article class="filmCard">
-        <h2 class="cardHeader">${episode.name} - S${season}E${episodeNumber}</h2>
+        <h2 class="cardHeader">${episode.name} - ${formatEpisodeCode(episode.season, episode.number)}</h2>
         <img src="${episode.image.medium}" alt="${episode.name}" />
         <p class="summary">${episode.summary}</p>
       </article>
