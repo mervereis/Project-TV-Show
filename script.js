@@ -1,9 +1,12 @@
 //You can edit ALL of the code here
+let allEpisodes = [];
 function setup() {
   fetch("https://api.tvmaze.com/shows/82/episodes")
     .then((response) => response.json())
     .then((episodeList) => {
-      makePageForEpisodes(episodeList);
+      allEpisodes = episodeList;
+      makePageForEpisodes(allEpisodes);
+      setupSearch();
     })
     .catch((error) => {
       console.error("Error fetching episodes:", error);
@@ -21,12 +24,33 @@ function makePageForEpisodes(episodeList) {
       return `
       <article class="filmCard">
         <h2 class="cardHeader">${episode.name} - ${formatEpisodeCode(episode.season, episode.number)}</h2>
-        <img src="${episode.image.medium}" alt="${episode.name}" />
+        <img src="${episode.image?.medium || ""}" alt="${episode.name}" />
         <p class="summary">${episode.summary}</p>
       </article>
     `;
     })
     .join("");
-}
 
+  document.getElementById("episodeCount").textContent =
+    `Displaying ${episodeList.length} / ${allEpisodes.length} episodes`;
+}
+function setupSearch() {
+  const searchInput = document.getElementById("searchInput");
+
+  searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    const filteredEpisodes = allEpisodes.filter((episode) => {
+      return (
+        episode.name.toLowerCase().includes(searchTerm) ||
+        (episode.summary || "").toLowerCase().includes(searchTerm)
+      );
+    });
+
+    makePageForEpisodes(filteredEpisodes);
+
+    document.getElementById("episodeCount").textContent =
+      `Displaying ${filteredEpisodes.length} / ${allEpisodes.length} episodes`;
+  });
+}
 window.onload = setup;
