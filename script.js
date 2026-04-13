@@ -2,20 +2,25 @@
 let allEpisodes = [];
 
 function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
-    .then((response) => response.json())
-    .then((episodeList) => {
-      allEpisodes = episodeList;
+  document.getElementById("root").innerHTML = "Loading...";
+  // this settimeout is here to demonstrate to loading
+  setTimeout(
+    () =>
+      fetch("https://api.tvmaze.com/shows/82/episodes")
+        .then((response) => response.json())
+        .then((episodeList) => {
+          allEpisodes = episodeList;
 
-      makePageForEpisodes(allEpisodes);
-      setupSearch();
-      populateEpisodeSelect(allEpisodes);
-    })
-    .catch((error) => {
-      console.error("Error fetching episodes:", error);
-      document.getElementById("root").textContent =
-        "Error loading episodes. Please try again later.";
-    });
+          makePageForEpisodes(allEpisodes);
+          setupSearch();
+          populateEpisodeSelect(allEpisodes);
+        })
+        .catch((error) => {
+          document.getElementById("root").textContent =
+            "Error loading episodes. Please try again later.";
+        }),
+    1000,
+  );
 }
 
 function formatEpisodeCode(season, episode) {
