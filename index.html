@@ -4,22 +4,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Show Project |Merve Reis-mervereis</title>
+  <title>TV Show Project | Merve Reis - mervereis</title>
   <link href="style.css" rel="stylesheet" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
+
+  <h1>TV Show Episode Viewer</h1>
+
   <div class="searchContainer">
-    <select id="episodeSelect"></select>
-    <input type="text" id="searchInput" placeholder="Search episodes..." />
+
+    
+    <div>
+      <label for="showSelect"><strong>Choose Show:</strong></label><br>
+      <select id="showSelect"></select>
+    </div>
+
+    
+    <div>
+      <label for="episodeSelect"><strong>Choose Episode:</strong></label><br>
+      <select id="episodeSelect"></select>
+    </div>
+
+    
+    <div>
+      <label for="searchInput"><strong>Search Episodes:</strong></label><br>
+      <input type="text" id="searchInput" placeholder="Search episodes..." />
+    </div>
+
+    
     <p id="episodeCount"></p>
+
   </div>
 
+  
   <div id="root"></div>
 
   <!-- Loads YOUR javascript code -->
   <script src="script.js"></script>
+
 </body>
 
 </html>
