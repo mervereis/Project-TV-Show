@@ -1,5 +1,8 @@
 //You can edit ALL of the code here
 let allEpisodes = [];
+let currentEpisodes = [];
+let showCache = [];
+const episodesCache = [];
 
 function setup() {
   document.getElementById("root").innerHTML = "Loading...";
