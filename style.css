@@ -116,6 +116,49 @@ body {
   max-width: 200px;
 }
 
+/* ─── TVMaze Link ─────────────────────────────────────────────────────────── */
+.tvMazeLink {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.tvMazeLink:hover {
+  background-color: #555;
+}
+
+/* ─── Footer Attribution ───────────────────────────────────────────────────── */
+footer.attribution {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #333;
+  color: #fff;
+  border-top: 2px solid #555;
+}
+
+footer.attribution p {
+  margin: 0;
+  font-size: 14px;
+}
+
+footer.attribution a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer.attribution a:hover {
+  text-decoration: underline;
+}
+
 /* ─── Episodes Controls ────────────────────────────────────────────────────── */
 .episodes-controls {
   display: flex;

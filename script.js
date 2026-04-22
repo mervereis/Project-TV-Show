@@ -1,9 +1,7 @@
-
 let allEpisodes = [];
 let currentEpisodes = [];
 let showsCache = [];
 const episodesCache = {};
-
 
 function setup() {
   renderShowsView();
@@ -117,7 +115,6 @@ function renderShowsListing(shows) {
     )
     .join("");
 
- 
   listing.querySelectorAll(".show-link").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -243,17 +240,21 @@ function makePageForEpisodes(episodeList) {
   if (!rootElem) return;
 
   rootElem.innerHTML = episodeList
-    .map(
-      (episode) => `
+    .map((episode) => {
+      const tvMazeLink = episode.url
+        ? `<a href="${episode.url}" target="_blank" rel="noopener noreferrer" class="tvMazeLink">View on TVMaze</a>`
+        : "";
+      return `
     <article class="filmCard">
       <h2 class="cardHeader">
         ${episode.name} - ${formatEpisodeCode(episode.season, episode.number)}
       </h2>
       <img src="${episode.image?.medium || ""}" alt="${episode.name}" />
       <p class="summary">${episode.summary || ""}</p>
+      ${tvMazeLink}
     </article>
-  `,
-    )
+  `;
+    })
     .join("");
 
   const count = document.getElementById("episodeCount");
