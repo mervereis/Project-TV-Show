@@ -1,54 +1,7 @@
-/* #root {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  background-color: #f5f5f5;
+/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
 }
-
-.filmcard {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.filmcard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.cardheader {
-  padding: 15px;
-  margin: 0;
-  background-color: #f9f9f9;
-  border-bottom: 2px solid #e0e0e0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-}
-
-.cardimage {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.cardsummary {
-  padding: 15px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #555;
-  max-height: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
 
 body {
   margin: 0;
@@ -56,28 +9,237 @@ body {
   background: #f2f2f2;
 }
 
-/* GRID CONTAINER */
-#root {
+/* ─── Site Header ──────────────────────────────────────────────────────────── */
+.site-header {
+  background: #222;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  min-height: 52px;
+}
+
+.site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+/* ─── Shows Controls (top bar) ─────────────────────────────────────────────── */
+.shows-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex: 1;
+  padding: 10px 0;
+}
+
+.shows-controls label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label-text {
+  color: #ccc;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.shows-controls input[type="text"],
+.episodes-controls input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  min-width: 160px;
+  outline: none;
+}
+
+.shows-controls input[type="text"]:focus,
+.episodes-controls input[type="text"]:focus {
+  border-color: #aaa;
+}
+
+.show-count,
+.episode-count {
+  color: #ccc;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+#showJumpSelect,
+#episodeSelect {
+  padding: 6px 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ─── Breadcrumb (episodes view) ───────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #90c8f0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  color: #666;
+}
+
+.breadcrumb-current {
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ─── Episodes Controls ────────────────────────────────────────────────────── */
+.episodes-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex: 1;
+  padding: 10px 0;
+}
+
+.episodes-controls label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ─── Shows Listing ────────────────────────────────────────────────────────── */
+#showsListing {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Show Card — horizontal layout matching screenshot */
+.show-card {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 100px 1fr 180px;
+  gap: 20px;
+  align-items: start;
+}
+
+.show-card:last-child {
+  border-bottom: none;
+}
+
+.show-thumb {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.show-body {
+  flex: 1;
+}
+
+.show-name {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #111;
+}
+
+.show-link {
+  color: #111;
+  text-decoration: none;
+}
+
+.show-link:hover {
+  text-decoration: underline;
+  color: #0070cc;
+}
+
+.show-summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.show-summary p {
+  margin: 0;
+}
+
+/* Meta panel */
+.show-meta {
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meta-item {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.meta-label {
+  font-weight: 700;
+  color: #111;
+}
+
+.meta-value {
+  color: #333;
+}
+
+/* ─── Episodes Grid ────────────────────────────────────────────────────────── */
+#root-inner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 28px;
   padding: 20px;
 }
 
-/* CARD */
+/* ─── Episode Card ─────────────────────────────────────────────────────────── */
 .filmCard {
   background: #edecec;
   border-radius: 12px;
   padding: 16px;
   text-align: center;
+  transition: box-shadow 0.2s ease;
 }
 
-/* HOVER EFFECT */
 .filmCard:hover {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
 }
 
-/* CARD HEADER */
 .cardHeader {
   background: #e0e0e0;
   border: 1px solid #999;
@@ -85,9 +247,10 @@ body {
   padding: 10px;
   font-weight: 600;
   margin-bottom: 15px;
+  font-size: 15px;
+  color: #222;
 }
 
-/* IMAGE */
 .filmCard img {
   width: 80%;
   max-width: 250px;
@@ -96,25 +259,42 @@ body {
   margin-bottom: 12px;
 }
 
-/* SUMMARY TEXT */
 .summary {
   font-size: 13px;
   color: #555;
   line-height: 1.4;
+  text-align: left;
 }
 
-.searchContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-  margin: 0 20px;
+.summary p {
+  margin: 0;
+}
 
-  input {
-    padding: 10px;
+/* ─── Utility ──────────────────────────────────────────────────────────────── */
+.loading-msg,
+.no-results,
+.error-msg {
+  color: #666;
+  font-size: 15px;
+  padding: 20px;
+  margin: 0;
+}
+
+.error-msg {
+  color: #c0392b;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .show-card {
+    grid-template-columns: 80px 1fr;
   }
 
-  select {
-    padding: 10px;
+  .show-meta {
+    grid-column: 1 / -1;
+  }
+
+  .show-name {
+    font-size: 20px;
   }
 }
